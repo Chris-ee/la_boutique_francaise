@@ -15,6 +15,11 @@ class ProductController extends AbstractController
         // récupérer le produit
         $produit = $productRepository->findOneBySlug($slug);
         // echo gettype($produit);
+
+        if(!$produit){
+            return $this->redirectToRoute('app_home');
+        }
+
         // envoyer le l'objet
         return $this->render('product/index.html.twig', [
             'produit' => $produit,
